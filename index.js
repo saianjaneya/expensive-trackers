@@ -64,16 +64,21 @@ async function main() {
       await totalExpenses();
       break;
 
-    case "delete":
-      // Validate the expense ID
-      if (!id || !Number.isSafeInteger(Number(id))) {
+    case "delete": {
+      // Get the expense ID from the second argument
+      const expenseId = Number(amount);
+
+      // Check whether the ID is a valid number
+      if (!Number.isSafeInteger(expenseId)) {
         console.log("Please provide a valid expense ID.");
         break;
       }
 
-      // Delete the selected expense
-      await deleteExpense(Number(id));
+      // Delete the expense using its ID
+      await deleteExpense(expenseId);
+
       break;
+    }
 
     case "category":
       // Validate the category

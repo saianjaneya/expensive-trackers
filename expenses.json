@@ -1,22 +1,20 @@
 [
   {
-    "id": 101,
+    "id": 1793713982815,
     "amount": 500,
-    "category": "Food"
+    "category": "Food",
+    "date": "2026-11-03T13:53:02.815Z"
   },
   {
-    "id": 102,
-    "amount": 300,
-    "category": "Travel"
-  },
-  {
-    "id": 103,
+    "id": 1793713982861,
     "amount": 200,
-    "category": "Food"
+    "category": "Travel",
+    "date": "2026-11-03T13:53:02.861Z"
   },
   {
-    "id": 104,
-    "amount": 400,
-    "category": "Shopping"
+    "id": 1793713982895,
+    "amount": 300,
+    "category": "Shopping",
+    "date": "2026-11-03T13:53:02.895Z"
   }
 ]

@@ -2,20 +2,24 @@
 import { getExpenses, saveExpenses } from "../data/expenseFile.js";
 
 // Add a new expense
+// Add a new expense
 export async function addExpense(amount, category) {
   try {
     // Convert the amount into a number
     const expenseAmount = Number(amount);
 
-    // Validate the amount
+    // Remove unnecessary spaces from the category
+    const expenseCategory = category?.trim();
+
+    // Check whether the amount is valid
     if (!Number.isFinite(expenseAmount) || expenseAmount <= 0) {
       console.log("Please enter a valid positive amount.");
       return;
     }
 
-    // Validate the category
-    if (!category || category.trim() === "") {
-      console.log("Please provide a category.");
+    // Check whether the category is empty
+    if (!expenseCategory) {
+      console.log("Please provide a valid category.");
       return;
     }
 
@@ -26,17 +30,17 @@ export async function addExpense(amount, category) {
     const newExpense = {
       id: Date.now(),
       amount: expenseAmount,
-      category: category.trim(),
+      category: expenseCategory,
       date: new Date().toISOString(),
     };
 
-    // Add the new expense
+    // Add the new expense to the array
     expenses.push(newExpense);
 
-    // Save updated expenses
+    // Save the updated expenses
     await saveExpenses(expenses);
 
-    console.log("Expense added successfully!");
+    console.log("Expense added successfully.");
   } catch (error) {
     console.log("Error adding expense:", error.message);
   }
@@ -83,36 +87,31 @@ export async function totalExpenses() {
 }
 
 // Delete an expense using its ID
-export async function deleteExpense(expenseId) {
+export async function deleteExpense(id) {
   try {
-    // Get all expenses
+    // Get all expenses from the JSON file
     const expenses = await getExpenses();
 
-    // Check whether the expense exists
-    const exists = expenses.some((expense) => {
-      return expense.id === expenseId;
-    });
+    // Check whether the expense ID exists
+    const expenseExists = expenses.some((expense) => expense.id === id);
 
-    // Stop if the ID does not exist
-    if (!exists) {
-      console.log("Expense not found!");
+    // Stop if the expense does not exist
+    if (!expenseExists) {
+      console.log("Expense not found.");
       return;
     }
 
-    // Keep all expenses except the selected ID
-    const updatedExpenses = expenses.filter((expense) => {
-      return expense.id !== expenseId;
-    });
+    // Keep all expenses except the one we want to delete
+    const updatedExpenses = expenses.filter((expense) => expense.id !== id);
 
     // Save the updated expenses
     await saveExpenses(updatedExpenses);
 
-    console.log("Expense deleted successfully!");
+    console.log("Expense deleted successfully.");
   } catch (error) {
     console.log("Error deleting expense:", error.message);
   }
 }
-
 // Filter expenses by category
 export async function filterByCategory(searchCategory) {
   try {

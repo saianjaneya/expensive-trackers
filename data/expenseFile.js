@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 export async function getExpenses() {
-  const data = await readFile("expenses..json", "utf-8");
+  const data = await readFile("expenses.json", "utf-8");
   return JSON.parse(data);
 }
 
