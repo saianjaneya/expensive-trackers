@@ -1,0 +1,22 @@
+[
+  {
+    "id": 101,
+    "amount": 500,
+    "category": "Food"
+  },
+  {
+    "id": 102,
+    "amount": 300,
+    "category": "Travel"
+  },
+  {
+    "id": 103,
+    "amount": 200,
+    "category": "Food"
+  },
+  {
+    "id": 104,
+    "amount": 400,
+    "category": "Shopping"
+  }
+]
